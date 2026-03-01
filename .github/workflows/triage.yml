@@ -1,0 +1,19 @@
+name: Issue Triage
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+jobs:
+  add-triage-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              labels: ['needs-triage'],
+            });
