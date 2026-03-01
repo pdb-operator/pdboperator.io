@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://pdboperator.io">
-    <img src="static/img/logo.svg" alt="PDB Operator logo" width="80">
+    <img src="https://raw.githubusercontent.com/pdb-operator/pdboperator.io/main/static/img/logo.svg" alt="PDB Operator logo" width="80">
   </a>
 </p>
 
@@ -43,7 +43,7 @@ npm run serve          # Serve production build locally
 ## Deployment
 
 The site is automatically deployed to [GitHub Pages](https://pages.github.com/)
-via the [deploy workflow](.github/workflows/deploy.yml) on every push to `main`.
+via the [deploy workflow](https://github.com/pdb-operator/pdboperator.io/blob/main/.github/workflows/deploy.yml) on every push to `main`.
 
 **Live site:** [https://pdboperator.io](https://pdboperator.io)
 
