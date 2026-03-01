@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A56A8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="innerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326CE5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2856B8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E3F8A;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Shield shape - represents protection/disruption budget -->
+  <path d="M256 28 L448 120 L448 260 C448 370 360 450 256 492 C152 450 64 370 64 260 L64 120 Z"
+        fill="url(#shieldGrad)" stroke="#1A3A6E" stroke-width="4" filter="url(#shadow)"/>
+
+  <!-- Inner shield highlight -->
+  <path d="M256 52 L428 134 L428 258 C428 356 348 430 256 468 C164 430 84 356 84 258 L84 134 Z"
+        fill="url(#innerGrad)" stroke="#4A90D9" stroke-width="2" opacity="0.9"/>
+
+  <!-- Kubernetes wheel (simplified) - 7 spokes -->
+  <g transform="translate(256, 240)" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.15">
+    <circle r="120"/>
+    <line x1="0" y1="-120" x2="0" y2="120"/>
+    <line x1="-104" y1="-60" x2="104" y2="60"/>
+    <line x1="-104" y1="60" x2="104" y2="-60"/>
+  </g>
+
+  <!-- Central hexagon - represents pods/containers -->
+  <polygon points="256,160 306,189 306,247 256,276 206,247 206,189"
+           fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.9"/>
+
+  <!-- Three smaller hexagons around center - pods being protected -->
+  <!-- Top -->
+  <polygon points="256,100 280,114 280,142 256,156 232,142 232,114"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2.5"/>
+  <!-- Bottom-left -->
+  <polygon points="196,240 220,254 220,282 196,296 172,282 172,254"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2.5"/>
+  <!-- Bottom-right -->
+  <polygon points="316,240 340,254 340,282 316,296 292,282 292,254"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2.5"/>
+
+  <!-- Connection lines from center hex to pod hexagons -->
+  <line x1="256" y1="160" x2="256" y2="142" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  <line x1="206" y1="247" x2="220" y2="254" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  <line x1="306" y1="247" x2="292" y2="254" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+
+  <!-- Checkmark inside center hexagon - representing budget compliance -->
+  <polyline points="236,216 252,236 280,200"
+            fill="none" stroke="#4ADE80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Disruption indicator lines (dashed) on the shield exterior -->
+  <g stroke="#FF6B6B" stroke-width="2" stroke-dasharray="6,4" opacity="0.5">
+    <line x1="80" y1="180" x2="50" y2="160"/>
+    <line x1="80" y1="220" x2="44" y2="230"/>
+    <line x1="432" y1="180" x2="462" y2="160"/>
+    <line x1="432" y1="220" x2="468" y2="230"/>
+    <line x1="120" y1="400" x2="100" y2="430"/>
+    <line x1="392" y1="400" x2="412" y2="430"/>
+  </g>
+
+  <!-- "PDB" text at bottom of shield -->
+  <text x="256" y="360" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+        font-size="56" font-weight="800" fill="#FFFFFF" letter-spacing="8">PDB</text>
+
+  <!-- Subtle scan lines for technical feel -->
+  <g opacity="0.04">
+    <line x1="64" y1="140" x2="448" y2="140" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="64" y1="180" x2="448" y2="180" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="64" y1="220" x2="448" y2="220" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="64" y1="300" x2="448" y2="300" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="64" y1="340" x2="448" y2="340" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="64" y1="380" x2="448" y2="380" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+</svg>

@@ -1,0 +1,236 @@
+/* -- Color Palette (Kubernetes Blue) -- */
+@import url('https://cdn.jsdelivr.net/npm/geist@1.4.1/dist/fonts/geist-sans/style.min.css');
+@import url('https://cdn.jsdelivr.net/npm/geist@1.4.1/dist/fonts/geist-mono/style.min.css');
+
+:root {
+  --ifm-color-primary: #326CE5;
+  --ifm-color-primary-dark: #2856B8;
+  --ifm-color-primary-darker: #1E3F8A;
+  --ifm-color-primary-darkest: #162D63;
+  --ifm-color-primary-light: #4A90D9;
+  --ifm-color-primary-lighter: #7DB4F5;
+  --ifm-color-primary-lightest: #B0D4FF;
+
+  --ifm-code-font-size: 92%;
+  --ifm-font-family-base: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ifm-font-family-monospace: 'Geist Mono', 'Fira Code', 'Courier New', monospace;
+  --ifm-heading-font-family: 'Geist Mono', 'Fira Code', monospace;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-bold: 600;
+  --ifm-line-height-base: 1.7;
+  --ifm-global-radius: 0.5rem;
+  --ifm-code-border-radius: 0.375rem;
+
+  --docusaurus-highlighted-code-line-bg: rgba(50, 108, 229, 0.08);
+
+  --hero-bg: linear-gradient(135deg, #0D1117 0%, #111827 30%, #162D63 60%, #1E3F8A 100%);
+  --hero-text: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+  --section-alt-bg: #f0f5ff;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4A90D9;
+  --ifm-color-primary-dark: #326CE5;
+  --ifm-color-primary-darker: #2856B8;
+  --ifm-color-primary-darkest: #1E3F8A;
+  --ifm-color-primary-light: #7DB4F5;
+  --ifm-color-primary-lighter: #B0D4FF;
+  --ifm-color-primary-lightest: #D6E8FF;
+  --ifm-background-color: #0D1117;
+  --ifm-background-surface-color: #161B22;
+
+  --docusaurus-highlighted-code-line-bg: rgba(50, 108, 229, 0.15);
+
+  --hero-bg: linear-gradient(135deg, #0D1117 0%, #111827 50%, #1E3F8A 100%);
+  --hero-text: #ffffff;
+  --card-bg: #161B22;
+  --card-border: #30363D;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --section-alt-bg: #0D1117;
+}
+
+/* -- Global -- */
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-heading-font-family);
+  letter-spacing: -0.02em;
+}
+
+/* -- Navbar -- */
+.navbar {
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navbar__title {
+  font-family: 'Geist Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar__link:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* -- Sidebar -- */
+.menu__link {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background-color: rgba(50, 108, 229, 0.08);
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background-color: rgba(74, 144, 217, 0.1);
+}
+
+/* -- Code blocks -- */
+.prism-code {
+  border-radius: 0.5rem !important;
+}
+
+code {
+  border: 1px solid var(--card-border);
+  background-color: rgba(50, 108, 229, 0.04);
+}
+
+[data-theme='dark'] code {
+  background-color: rgba(74, 144, 217, 0.06);
+}
+
+[data-theme='dark'] .prism-code {
+  background-color: #0D1117 !important;
+  border: 1px solid rgba(50, 108, 229, 0.15);
+}
+
+/* -- Tables -- */
+table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+}
+
+table th {
+  background-color: var(--section-alt-bg);
+  font-family: 'Geist Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme='dark'] table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* -- Mermaid diagrams -- */
+.docusaurus-mermaid-container {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: center;
+}
+
+.docusaurus-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* -- Footer -- */
+.footer--dark {
+  --ifm-footer-background-color: #010409;
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #010409;
+}
+
+.footer__title {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* -- Admonitions -- */
+.alert {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-left-width: 4px;
+}
+
+.alert .admonition-heading h5 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* -- Tabs -- */
+.tabs__item {
+  border-radius: 0.375rem 0.375rem 0 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.tabs__item--active {
+  border-bottom-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+/* -- Horizontal rules -- */
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--card-border);
+  margin: 2.5rem 0;
+}
+
+/* -- Doc page headings -- */
+.markdown h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* -- TOC -- */
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* -- Scrollbar (dark mode) -- */
+[data-theme='dark'] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #161B22;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #30363D;
+  border-radius: 4px;
+}

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A56A8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="innerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326CE5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2856B8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E3F8A;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark background circle -->
+  <circle cx="256" cy="256" r="250" fill="#0D1117"/>
+
+  <!-- Shield shape -->
+  <path d="M256 48 L428 130 L428 250 C428 350 348 425 256 465 C164 425 84 350 84 250 L84 130 Z"
+        fill="url(#shieldGrad)" stroke="#4A90D9" stroke-width="3" filter="url(#shadow)"/>
+
+  <!-- Inner shield -->
+  <path d="M256 70 L410 144 L410 248 C410 338 336 406 256 444 C176 406 102 338 102 248 L102 144 Z"
+        fill="url(#innerGrad)" stroke="#5BA0F0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- K8s wheel background -->
+  <g transform="translate(256, 230)" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.12">
+    <circle r="105"/>
+    <line x1="0" y1="-105" x2="0" y2="105"/>
+    <line x1="-91" y1="-52" x2="91" y2="52"/>
+    <line x1="-91" y1="52" x2="91" y2="-52"/>
+  </g>
+
+  <!-- Central hexagon -->
+  <polygon points="256,160 300,185 300,235 256,260 212,235 212,185"
+           fill="none" stroke="#FFFFFF" stroke-width="3.5" opacity="0.9"/>
+
+  <!-- Pod hexagons -->
+  <polygon points="256,105 277,117 277,141 256,153 235,141 235,117"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2"/>
+  <polygon points="202,232 223,244 223,268 202,280 181,268 181,244"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2"/>
+  <polygon points="310,232 331,244 331,268 310,280 289,268 289,244"
+           fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Connections -->
+  <line x1="256" y1="160" x2="256" y2="141" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <line x1="212" y1="235" x2="223" y2="244" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <line x1="300" y1="235" x2="289" y2="244" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Checkmark -->
+  <polyline points="238,206 252,224 276,196"
+            fill="none" stroke="#4ADE80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Disruption lines -->
+  <g stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,4" opacity="0.45">
+    <line x1="100" y1="180" x2="72" y2="165"/>
+    <line x1="100" y1="215" x2="68" y2="225"/>
+    <line x1="412" y1="180" x2="440" y2="165"/>
+    <line x1="412" y1="215" x2="444" y2="225"/>
+  </g>
+
+  <!-- PDB text -->
+  <text x="256" y="340" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+        font-size="50" font-weight="800" fill="#FFFFFF" letter-spacing="8">PDB</text>
+
+  <!-- Scan lines -->
+  <g opacity="0.03">
+    <line x1="84" y1="150" x2="428" y2="150" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="84" y1="190" x2="428" y2="190" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="84" y1="290" x2="428" y2="290" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="84" y1="370" x2="428" y2="370" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+</svg>

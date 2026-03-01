@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1117;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D1117;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A56A8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="innerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326CE5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2856B8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E3F8A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CBD5E1;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#326CE5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.04" stroke="#326CE5" stroke-width="1">
+    <line x1="0" y1="50" x2="1200" y2="50"/>
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="350" x2="1200" y2="350"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="700" y1="0" x2="700" y2="400"/>
+    <line x1="800" y1="0" x2="800" y2="400"/>
+    <line x1="900" y1="0" x2="900" y2="400"/>
+    <line x1="1000" y1="0" x2="1000" y2="400"/>
+    <line x1="1100" y1="0" x2="1100" y2="400"/>
+  </g>
+
+  <!-- Decorative floating hexagons -->
+  <g opacity="0.06" fill="none" stroke="#326CE5" stroke-width="1.5">
+    <polygon points="80,60 100,48 120,60 120,84 100,96 80,84" />
+    <polygon points="1050,320 1070,308 1090,320 1090,344 1070,356 1050,344" />
+    <polygon points="950,70 970,58 990,70 990,94 970,106 950,94" />
+    <polygon points="150,310 170,298 190,310 190,334 170,346 150,334" />
+    <polygon points="1100,150 1120,138 1140,150 1140,174 1120,186 1100,174" />
+  </g>
+
+  <!-- Shield logo (left side) -->
+  <g transform="translate(200, 200) scale(0.55)">
+    <!-- Shield -->
+    <path d="M0,-180 L175,-95 L175,55 C175,155 100,225 0,260 C-100,225 -175,155 -175,55 L-175,-95 Z"
+          fill="url(#shieldGrad)" stroke="#4A90D9" stroke-width="3" filter="url(#shadow)"/>
+    <path d="M0,-160 L158,-82 L158,48 C158,140 90,205 0,238 C-90,205 -158,140 -158,48 L-158,-82 Z"
+          fill="url(#innerGrad)" stroke="#5BA0F0" stroke-width="1.5" opacity="0.9"/>
+
+    <!-- K8s wheel -->
+    <g fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.12">
+      <circle r="95"/>
+      <line x1="0" y1="-95" x2="0" y2="95"/>
+      <line x1="-82" y1="-47" x2="82" y2="47"/>
+      <line x1="-82" y1="47" x2="82" y2="-47"/>
+    </g>
+
+    <!-- Central hex -->
+    <polygon points="0,-58 42,-37 42,15 0,36 -42,15 -42,-37"
+             fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.9"/>
+
+    <!-- Pod hexes -->
+    <polygon points="0,-108 19,-119 19,-97 0,-86 -19,-97 -19,-119"
+             fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="1.5"/>
+    <polygon points="-50,28 -31,17 -31,39 -50,50 -69,39 -69,17"
+             fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="1.5"/>
+    <polygon points="50,28 69,17 69,39 50,50 31,39 31,17"
+             fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="1.5"/>
+
+    <!-- Checkmark -->
+    <polyline points="-16,-12 -4,6 22,-26"
+              fill="none" stroke="#4ADE80" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+    <!-- Disruption lines -->
+    <g stroke="#FF6B6B" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4">
+      <line x1="-160" y1="-40" x2="-190" y2="-55"/>
+      <line x1="-160" y1="0" x2="-195" y2="10"/>
+      <line x1="160" y1="-40" x2="190" y2="-55"/>
+      <line x1="160" y1="0" x2="195" y2="10"/>
+    </g>
+
+    <!-- PDB text in shield -->
+    <text x="0" y="130" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+          font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="6">PDB</text>
+  </g>
+
+  <!-- Main text (right side) -->
+  <text x="440" y="165" font-family="'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+        font-size="62" font-weight="800" fill="url(#textGrad)" filter="url(#textShadow)" letter-spacing="3">pdb-operator</text>
+
+  <!-- Tagline -->
+  <text x="442" y="215" font-family="'Inter', 'Segoe UI', system-ui, sans-serif"
+        font-size="20" fill="#94A3B8" letter-spacing="1">Policy-driven PodDisruptionBudget automation for Kubernetes</text>
+
+  <!-- Feature badges -->
+  <g transform="translate(442, 245)">
+    <!-- Availability Classes -->
+    <rect x="0" y="0" width="170" height="30" rx="6" fill="#326CE5" fill-opacity="0.15" stroke="#326CE5" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="85" y="20" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#7DB4F5">Availability Classes</text>
+
+    <!-- Enforcement Modes -->
+    <rect x="182" y="0" width="170" height="30" rx="6" fill="#326CE5" fill-opacity="0.15" stroke="#326CE5" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="267" y="20" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#7DB4F5">Enforcement Modes</text>
+
+    <!-- Maintenance Windows -->
+    <rect x="364" y="0" width="180" height="30" rx="6" fill="#326CE5" fill-opacity="0.15" stroke="#326CE5" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="454" y="20" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#7DB4F5">Maintenance Windows</text>
+
+    <!-- Observability -->
+    <rect x="556" y="0" width="140" height="30" rx="6" fill="#326CE5" fill-opacity="0.15" stroke="#326CE5" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="626" y="20" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#7DB4F5">Observability</text>
+  </g>
+
+  <!-- Terminal prompt decoration -->
+  <g transform="translate(442, 305)">
+    <text font-family="'JetBrains Mono', monospace" font-size="15" fill="#4ADE80" opacity="0.7">$</text>
+    <text x="20" font-family="'JetBrains Mono', monospace" font-size="15" fill="#94A3B8" opacity="0.5">kubectl apply -f pdbpolicy.yaml</text>
+  </g>
+  <g transform="translate(442, 330)">
+    <text font-family="'JetBrains Mono', monospace" font-size="13" fill="#64748B" opacity="0.4">pdbpolicy.pdboperator.io/production-policy created</text>
+  </g>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="394" width="1200" height="6" fill="#326CE5" opacity="0.6"/>
+</svg>
