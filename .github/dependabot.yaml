@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    rebase-strategy: disabled
+    groups:
+      docusaurus:
+        patterns:
+          - "@docusaurus/*"
+          - "docusaurus-*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
