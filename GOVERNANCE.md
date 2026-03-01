@@ -6,7 +6,7 @@ documentation site.
 
 ## Maintainers
 
-See [MAINTAINERS.md](MAINTAINERS.md) for the current list of maintainers.
+See [MAINTAINERS.md](https://github.com/pdb-operator/pdboperator.io/blob/main/MAINTAINERS.md) for the current list of maintainers.
 
 ## Decision Making
 

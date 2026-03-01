@@ -43,4 +43,4 @@ git commit -s -m "docs: update installation guide"
 
 ## Code of Conduct
 
-This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
+This project follows the [Contributor Covenant Code of Conduct](https://github.com/pdb-operator/pdboperator.io/blob/main/CODE_OF_CONDUCT.md).
