@@ -1,6 +1,6 @@
 name: First-Time Contributor
 on:
-  pull_request_target:
+  pull_request:
     types: [opened]
 permissions:
   pull-requests: write
