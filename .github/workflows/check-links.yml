@@ -1,10 +1,7 @@
 name: Check Links
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**.md'
+  workflow_call:
   pull_request:
     branches: [main]
     paths:
