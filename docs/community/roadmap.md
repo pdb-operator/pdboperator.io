@@ -18,9 +18,9 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 - [x] Grafana dashboards and alerting rules
 - [x] HA deployment with leader election
 - [x] CI/CD pipelines
-- [ ] Helm chart
-- [ ] Published container images (GHCR)
-- [ ] Install manifests (`dist/install.yaml`)
+- [x] Helm chart ([helm-pdb-operator](https://github.com/pdb-operator/helm-pdb-operator))
+- [x] Published container images (GHCR)
+- [x] Install manifests (`dist/install.yaml`)
 
 ## v0.2.0 - StatefulSet and DaemonSet Support
 

@@ -50,6 +50,20 @@ spec:
 
 Use advisory mode when teams should be able to set their own availability requirements.
 
+## Resolution Logic
+
+The operator resolves the effective configuration based on the combination of policy and annotations:
+
+| Scenario | Result |
+|----------|--------|
+| No policy, annotation present | Use annotation |
+| No policy, no annotation | Skip (no PDB created) |
+| Policy with `strict` | Use policy (annotations ignored) |
+| Policy with `flexible`, annotation >= minimumClass | Use annotation |
+| Policy with `flexible`, annotation < minimumClass | Use minimumClass |
+| Policy with `advisory`, annotation present | Use annotation (if `allowOverride: true`) |
+| Policy with `advisory`, no annotation | Use policy |
+
 ## Related
 
 - [Availability Classes](/docs/core-concepts/availability-classes): the classes that enforcement modes protect

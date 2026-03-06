@@ -7,6 +7,11 @@ title: Grafana Dashboards
 
 PDB Operator includes pre-built Grafana dashboards for monitoring operator health and PDB status.
 
+## Prerequisites
+
+- Prometheus scraping the operator (see [Monitoring](/docs/guides/monitoring))
+- Grafana with a Prometheus data source configured
+
 ## Available Dashboards
 
 The dashboard JSON files are located in `config/grafana/dashboards/` in the [pdb-operator repository](https://github.com/pdb-operator/pdb-operator/tree/main/config/grafana).

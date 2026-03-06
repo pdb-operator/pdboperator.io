@@ -32,8 +32,8 @@ spec:
 ## Behavior
 
 During a maintenance window:
-- The operator relaxes the PDB's `minAvailable` setting to allow more disruptions
-- When the window closes, the original PDB configuration is restored
+- The operator temporarily removes the PDB entirely to allow disruptions
+- When the window closes, the PDB is automatically recreated with the original configuration
 
 ## Multiple Windows
 

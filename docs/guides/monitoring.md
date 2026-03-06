@@ -9,7 +9,7 @@ PDB Operator includes a comprehensive observability stack with Prometheus metric
 
 ## Prometheus Metrics
 
-All metrics are exposed on the metrics endpoint and can be scraped by Prometheus via the ServiceMonitor.
+All metrics are exposed on the metrics endpoint (default `:8443` over HTTPS) and can be scraped by Prometheus via the ServiceMonitor.
 
 | Metric | Type | Description |
 |--------|------|-------------|
@@ -25,25 +25,85 @@ All metrics are exposed on the metrics endpoint and can be scraped by Prometheus
 | `pdb_operator_enforcement_decisions_total` | Counter | Enforcement decisions |
 | `pdb_operator_override_attempts_total` | Counter | Override attempts |
 
+See the [Metrics Reference](/docs/reference/metrics-reference) for full label details and sample queries.
+
+### Enable ServiceMonitor
+
+With Helm:
+
+```bash
+helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
+  --namespace pdb-operator-system \
+  --set serviceMonitor.enabled=true
+```
+
+### Enable Prometheus Alerting Rules
+
+The Helm chart includes 12 alert groups covering operator health, performance, circuit breaker, compliance, workqueue depth, resources, and more:
+
+```bash
+helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
+  --namespace pdb-operator-system \
+  --set prometheusRule.enabled=true
+```
+
 ## OpenTelemetry Tracing
 
-Enable distributed tracing by setting the `OTLP_ENDPOINT` environment variable:
+Tracing is enabled by default. Configure the OTLP collector endpoint:
+
+```bash
+helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
+  --namespace pdb-operator-system \
+  --set tracing.endpoint=otel-collector.observability:4317
+```
+
+Or set the `OTLP_ENDPOINT` environment variable directly:
 
 ```yaml
-env:
+extraEnv:
   - name: OTLP_ENDPOINT
     value: "otel-collector.observability:4317"
 ```
 
-Traces are exported via OTLP/gRPC protocol and include spans for policy resolution, PDB creation, and reconciliation loops.
+Traces are exported via OTLP/gRPC protocol and include spans for:
+- Policy resolution and evaluation
+- PDB creation, update, and deletion
+- Reconciliation loops with correlation IDs
+- Maintenance window checks
 
 ## Structured Logging
 
 The operator outputs JSON-formatted structured logs with:
 
 - Audit trails for policy and PDB changes
-- Correlation IDs for request tracing
+- Correlation IDs and reconcile IDs for request tracing
 - Trace context propagation (W3C Trace Context)
+
+Configure the log level:
+
+```bash
+helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
+  --namespace pdb-operator-system \
+  --set controller.logLevel=debug
+```
+
+## Kubernetes Events
+
+The operator records events on both PDBPolicy and Deployment resources:
+
+| Event | Description |
+|-------|-------------|
+| `PolicyApplied` | Policy successfully applied to workloads |
+| `PolicyUpdated` | Policy configuration updated |
+| `PolicyRemoved` | Policy removed from workloads |
+| `PolicyConflict` | Multiple policies match a deployment |
+| `PolicyEnforced` | Enforcement mode blocked an override |
+| `PDBCreated` | New PDB created for a deployment |
+| `PDBUpdated` | Existing PDB updated |
+| `PDBDeleted` | PDB removed |
+| `DeploymentManaged` | Deployment is now managed by the operator |
+| `DeploymentSkipped` | Deployment skipped (single replica or no match) |
+| `AnnotationAccepted` | Annotation override accepted |
 
 ## Health Endpoints
 
@@ -60,4 +120,7 @@ kubectl get svc -n pdb-operator-system | grep metrics
 
 # Verify ServiceMonitor is picked up by Prometheus
 kubectl get servicemonitor -n pdb-operator-system
+
+# Check PrometheusRule alerts
+kubectl get prometheusrule -n pdb-operator-system
 ```

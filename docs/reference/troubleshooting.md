@@ -50,7 +50,7 @@ kubectl get deployment <name> -o jsonpath='{.metadata.annotations}'
 kubectl get events --field-selector involvedObject.name=<name>
 ```
 
-Higher priority (larger number) wins. If priorities are equal, the result is non-deterministic.
+Higher priority (larger number) wins. If priorities are equal, the operator uses deterministic tie-breaking (alphabetical by namespace/name).
 
 ## Metrics not showing
 

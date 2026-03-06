@@ -24,8 +24,19 @@ Managing PodDisruptionBudgets at scale is painful. Teams forget to create them, 
 
 PDB Operator is currently in **alpha** (`v0.1.0`). The API version is `v1alpha1`, meaning the API may change before reaching v1. See the [Roadmap](/docs/community/roadmap) for planned features.
 
+## Installation
+
+PDB Operator can be installed via **Helm** (recommended) or plain manifests. See the [Installation guide](/docs/getting-started/installation) for details.
+
+```bash
+helm install pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
+  --namespace pdb-operator-system \
+  --create-namespace
+```
+
 ## Next Steps
 
 - [Install PDB Operator](/docs/getting-started/installation)
 - [Create your first policy](/docs/getting-started/quickstart)
 - [Learn about availability classes](/docs/core-concepts/availability-classes)
+- [Helm chart configuration](/docs/guides/helm-values)

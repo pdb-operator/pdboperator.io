@@ -17,6 +17,7 @@ graph TD
     subgraph operator ["PDB Operator"]
         B["PDBPolicyController"]
         D["DeploymentController"]
+        Cache["Policy Cache"]
     end
 
     subgraph outputs ["Managed Resources"]
@@ -24,8 +25,10 @@ graph TD
     end
 
     A --> B
+    B -->|updates status| A
+    A --> Cache
     C --> D
-    B --> E
+    Cache --> D
     D --> E
 ```
 
@@ -36,8 +39,9 @@ graph TD
 Watches `PDBPolicy` resources and:
 
 - Finds matching deployments based on the policy's workload selector
-- Updates policy status with the list of applied workloads
+- Updates policy status with the list of applied workloads and managed PDBs
 - Handles policy deletion and cleanup via finalizers
+- Invalidates the policy cache when policies change
 
 ### DeploymentController
 
@@ -45,7 +49,9 @@ Watches `Deployment` resources and:
 
 - Resolves the effective policy for each deployment (considering annotations, enforcement modes, and priority)
 - Creates, updates, or deletes PodDisruptionBudgets
-- Checks maintenance window status and adjusts PDB configuration accordingly
+- Removes PDBs entirely during active maintenance windows
+- Detects and cleans up duplicate PDBs
+- Manages finalizers for PDB cleanup on deployment deletion
 - Records events and metrics for observability
 
 ## Reconciliation Flow
@@ -55,7 +61,7 @@ Watches `Deployment` resources and:
 3. The DeploymentController picks up each deployment and resolves the effective policy
 4. If the deployment has 2+ replicas, a PDB is created or updated
 5. The PDB's `minAvailable` is set based on the availability class
-6. During maintenance windows, PDB settings are automatically relaxed
+6. During maintenance windows, PDBs are temporarily removed to allow disruptions
 7. If a policy is deleted, managed PDBs are cleaned up via finalizers
 
 ## Key Design Decisions

@@ -24,10 +24,11 @@ API Group: `availability.pdboperator.io/v1alpha1`
 | `availabilityClass` | string | *(required)* | One of: `non-critical`, `standard`, `high-availability`, `mission-critical`, `custom` |
 | `workloadSelector` | WorkloadSelector | *(required)* | Defines which workloads this policy applies to |
 | `enforcement` | string | `advisory` | Enforcement mode: `strict`, `flexible`, `advisory` |
-| `priority` | int32 | `0` | Policy priority. Higher number wins when multiple policies match |
+| `priority` | int32 | `50` | Policy priority (0-1000). Higher number wins when multiple policies match |
 | `minimumClass` | string | | Minimum allowed class (used with `flexible` enforcement) |
 | `allowOverride` | bool | `true` | Whether annotations can override this policy |
-| `overrideRequiresReason` | bool | `false` | Require `override-reason` annotation for overrides |
+| `overrideRequiresAnnotation` | string | | Annotation key required for override |
+| `overrideRequiresReason` | bool | `false` | Require `pdboperator.io/override-reason` annotation for overrides |
 | `maintenanceWindows` | []MaintenanceWindow | | Scheduled maintenance windows |
 | `customPDBConfig` | PodDisruptionBudgetConfig | | Custom PDB settings (required when `availabilityClass: custom`) |
 | `enforceMinReplicas` | bool | `true` | Skip PDB creation for single-replica deployments |
@@ -65,7 +66,7 @@ API Group: `availability.pdboperator.io/v1alpha1`
 |-------|------|-------------|
 | `conditions` | []Condition | Standard Kubernetes conditions |
 | `appliedToWorkloads` | []string | List of workloads this policy currently applies to |
-| `pdbsManaged` | int32 | Number of PDBs managed by this policy |
+| `pdbsManaged` | []string | List of PDB names managed by this policy |
 | `lastAppliedTime` | Time | Last time the policy was successfully applied |
 | `observedGeneration` | int64 | Last observed generation of the policy |
 
