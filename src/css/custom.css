@@ -1,6 +1,6 @@
 /* -- Color Palette (Kubernetes Blue) -- */
-@import url('https://cdn.jsdelivr.net/npm/geist@1.4.1/dist/fonts/geist-sans/style.min.css');
-@import url('https://cdn.jsdelivr.net/npm/geist@1.4.1/dist/fonts/geist-mono/style.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
 :root {
   --ifm-color-primary: #326CE5;
@@ -12,9 +12,9 @@
   --ifm-color-primary-lightest: #B0D4FF;
 
   --ifm-code-font-size: 92%;
-  --ifm-font-family-base: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --ifm-font-family-monospace: 'Geist Mono', 'Fira Code', 'Courier New', monospace;
-  --ifm-heading-font-family: 'Geist Mono', 'Fira Code', monospace;
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --ifm-heading-font-family: 'JetBrains Mono', 'Fira Code', monospace;
   --ifm-heading-font-weight: 700;
   --ifm-font-weight-bold: 600;
   --ifm-line-height-base: 1.7;
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar__title {
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -110,7 +110,7 @@ code {
 }
 
 [data-theme='dark'] .prism-code {
-  background-color: #0D1117 !important;
+  background-color: #1e1e1e !important;
   border: 1px solid rgba(50, 108, 229, 0.15);
 }
 
@@ -127,7 +127,7 @@ table {
 
 table th {
   background-color: var(--section-alt-bg);
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -169,7 +169,7 @@ table tr:nth-child(even) {
 }
 
 .footer__title {
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;

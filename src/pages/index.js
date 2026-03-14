@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import {useEffect, useRef, useState, useCallback} from 'react';
 import styles from './index.module.css';
 
 function ShieldIcon() {
@@ -114,10 +115,31 @@ const FeatureList = [
   },
 ];
 
-function Feature({icon, title, description, tag}) {
+function Feature({icon, title, description, tag, index}) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add(styles.featureVisible);
+          observer.unobserve(el);
+        }
+      },
+      {threshold: 0.15},
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="col col--4" style={{marginBottom: '1.5rem'}}>
-      <div className={styles.featureCard}>
+    <div
+      ref={ref}
+      className="col col--4"
+      style={{marginBottom: '1.5rem', '--feature-index': index}}>
+      <div className={clsx(styles.featureCard, styles.featureAnimated)}>
         <div className={styles.featureHeader}>
           <div className={styles.featureIcon}>{icon}</div>
           <span className={styles.featureTag}>{tag}</span>
@@ -131,9 +153,65 @@ function Feature({icon, title, description, tag}) {
   );
 }
 
+function CopyButton({text}) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [text]);
+
+  return (
+    <button
+      className={styles.copyButton}
+      onClick={handleCopy}
+      aria-label="Copy to clipboard">
+      {copied ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+function QuickInstall() {
+  const helmCommand = 'helm install pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator';
+
+  return (
+    <section className={styles.quickInstall}>
+      <div className="container">
+        <Heading as="h2" className={styles.sectionTitle}>
+          Quick Install
+        </Heading>
+        <p className={styles.sectionSubtitle}>
+          Get up and running in seconds with Helm.
+        </p>
+        <div className={styles.installBox}>
+          <div className={styles.installTerminal}>
+            <div className={styles.installLine}>
+              <span className={styles.prompt}>$</span>{' '}
+              <span className={styles.installCmd}>{helmCommand}</span>
+            </div>
+            <CopyButton text={helmCommand} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomepageHeader() {
   return (
     <header className={styles.heroBanner}>
+      <div className={styles.heroGlow} />
       <div className={styles.gridOverlay} />
       <div className="container">
         <div className={styles.heroContent}>
@@ -221,7 +299,7 @@ function HowItWorks() {
           Two controllers working together to keep your cluster protected.
         </p>
         <div className={styles.flowContainer}>
-          <div className={styles.flowStep}>
+          <div className={styles.flowStepCard}>
             <div className={styles.flowNumber}>1</div>
             <div className={styles.flowContent}>
               <h4>Define Policies</h4>
@@ -236,7 +314,7 @@ function HowItWorks() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </div>
-          <div className={styles.flowStep}>
+          <div className={styles.flowStepCard}>
             <div className={styles.flowNumber}>2</div>
             <div className={styles.flowContent}>
               <h4>Operator Reconciles</h4>
@@ -251,7 +329,7 @@ function HowItWorks() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </div>
-          <div className={styles.flowStep}>
+          <div className={styles.flowStepCard}>
             <div className={styles.flowNumber}>3</div>
             <div className={styles.flowContent}>
               <h4>PDBs Auto-Managed</h4>
@@ -260,6 +338,37 @@ function HowItWorks() {
                 Maintenance windows relax them on schedule.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CallToAction() {
+  return (
+    <section className={styles.cta}>
+      <div className={styles.ctaGlow} />
+      <div className="container">
+        <div className={styles.ctaContent}>
+          <Heading as="h2" className={styles.ctaTitle}>
+            Ready to automate your PDBs?
+          </Heading>
+          <p className={styles.ctaSubtitle}>
+            Stop manually managing PodDisruptionBudgets. Let policies handle
+            availability across your entire cluster.
+          </p>
+          <div className={styles.ctaButtons}>
+            <Link
+              className={clsx('button button--lg', styles.primaryButton)}
+              to="/docs/getting-started/installation">
+              Install Now
+            </Link>
+            <Link
+              className={clsx('button button--lg', styles.secondaryButton)}
+              to="/docs/getting-started/quickstart">
+              View Quickstart
+            </Link>
           </div>
         </div>
       </div>
@@ -283,12 +392,14 @@ export default function Home() {
             </p>
             <div className="row">
               {FeatureList.map((props, idx) => (
-                <Feature key={idx} {...props} />
+                <Feature key={idx} index={idx} {...props} />
               ))}
             </div>
           </div>
         </section>
+        <QuickInstall />
         <HowItWorks />
+        <CallToAction />
       </main>
     </Layout>
   );

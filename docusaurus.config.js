@@ -90,7 +90,7 @@ const config = {
             lineColor: '#326CE5',
             secondaryColor: '#f0f5ff',
             tertiaryColor: '#e8f0fe',
-            fontFamily: 'Geist, -apple-system, sans-serif',
+            fontFamily: 'Inter, -apple-system, sans-serif',
             fontSize: '14px',
           },
         },
@@ -110,11 +110,6 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            to: '/docs/community/roadmap',
-            label: 'Roadmap',
-            position: 'left',
-          },
           {
             href: 'https://github.com/pdb-operator/pdb-operator',
             label: 'GitHub',
@@ -153,7 +148,6 @@ const config = {
             title: 'More',
             items: [
               {label: 'Blog', to: '/blog'},
-              {label: 'Roadmap', to: '/docs/community/roadmap'},
               {
                 label: 'GitHub',
                 href: 'https://github.com/pdb-operator/pdb-operator',
@@ -165,7 +159,7 @@ const config = {
       },
       prism: {
         theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        darkTheme: prismThemes.oneDark,
         additionalLanguages: ['bash', 'yaml', 'go', 'json'],
       },
     }),

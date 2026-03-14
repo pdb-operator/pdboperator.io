@@ -9,6 +9,23 @@
   color: #ffffff;
 }
 
+.heroGlow {
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(50, 108, 229, 0.15) 0%, transparent 70%);
+  animation: glowPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
 .gridOverlay {
   position: absolute;
   inset: 0;
@@ -36,7 +53,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
   color: #7DB4F5;
   background: rgba(50, 108, 229, 0.1);
@@ -52,10 +69,16 @@
   border-radius: 50%;
   background: #4ADE80;
   box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(74, 222, 128, 0.5); }
+  50% { box-shadow: 0 0 14px rgba(74, 222, 128, 0.9); }
 }
 
 .heroTitle {
-  font-family: 'Geist Mono', monospace !important;
+  font-family: 'JetBrains Mono', monospace !important;
   font-size: 3.5rem !important;
   font-weight: 800 !important;
   letter-spacing: -0.02em;
@@ -125,7 +148,7 @@
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
   line-height: 1.6;
 }
@@ -237,6 +260,18 @@
   color: #94a3b8;
 }
 
+.featureAnimated {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(var(--feature-index, 0) * 80ms);
+}
+
+.featureVisible .featureAnimated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .featureCard {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -287,7 +322,7 @@
 }
 
 .featureTag {
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -300,7 +335,7 @@
 }
 
 .featureTitle {
-  font-family: 'Geist Mono', monospace !important;
+  font-family: 'JetBrains Mono', monospace !important;
   font-size: 1.05rem !important;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -319,11 +354,78 @@
 }
 
 /* ========================================
+   QUICK INSTALL
+   ======================================== */
+.quickInstall {
+  padding: 4rem 0;
+  background: var(--section-alt-bg);
+}
+
+.installBox {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.installTerminal {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #0D1117;
+  border: 1px solid #30363D;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+[data-theme='light'] .installTerminal {
+  background: #1a1a2e;
+  border-color: #2d2d44;
+}
+
+.installLine {
+  flex: 1;
+  color: #C9D1D9;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.installCmd {
+  color: #79C0FF;
+}
+
+.copyButton {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  color: #8B949E;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  padding: 0;
+}
+
+.copyButton:hover {
+  color: #C9D1D9;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copyButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ========================================
    HOW IT WORKS
    ======================================== */
 .howItWorks {
   padding: 5rem 0;
-  background: var(--section-alt-bg);
 }
 
 .flowContainer {
@@ -335,10 +437,20 @@
   margin: 0 auto;
 }
 
-.flowStep {
+.flowStepCard {
   flex: 1;
   text-align: center;
-  padding: 0 1rem;
+  padding: 1.5rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flowStepCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .flowNumber {
@@ -350,7 +462,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
   font-size: 1rem;
   margin: 0 auto 1rem;
@@ -358,7 +470,7 @@
 }
 
 .flowContent h4 {
-  font-family: 'Geist Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -385,7 +497,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0.5rem;
+  padding-top: 2rem;
 }
 
 .flowArrow svg {
@@ -393,6 +505,59 @@
   height: 24px;
   color: var(--ifm-color-primary);
   opacity: 0.5;
+}
+
+/* ========================================
+   CALL TO ACTION
+   ======================================== */
+.cta {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, #0D1117 0%, #0f1923 30%, #131f36 60%, #162D63 100%);
+  color: #ffffff;
+}
+
+.ctaGlow {
+  position: absolute;
+  bottom: -30%;
+  left: 20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(50, 108, 229, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ctaContent {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.ctaSubtitle {
+  font-size: 1.15rem;
+  color: #94A3B8;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* ========================================
@@ -434,7 +599,7 @@
   .flowContainer {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .flowArrow {
@@ -442,8 +607,17 @@
     padding-top: 0;
   }
 
-  .flowStep {
+  .flowStepCard {
     max-width: 350px;
+    width: 100%;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .ctaTitle {
+    font-size: 1.8rem !important;
   }
 }
 
@@ -458,5 +632,9 @@
 
   .heroSubtitle {
     font-size: 1rem;
+  }
+
+  .installTerminal {
+    font-size: 0.75rem;
   }
 }

@@ -32,6 +32,7 @@ const sidebars = {
         'guides/helm-values',
         'guides/monitoring',
         'guides/grafana-dashboards',
+        'guides/claude-code-skill',
       ],
     },
     {
@@ -49,7 +50,6 @@ const sidebars = {
       items: [
         'community/contributing',
         'community/governance',
-        'community/roadmap',
         'community/security',
         'community/code-of-conduct',
       ],
