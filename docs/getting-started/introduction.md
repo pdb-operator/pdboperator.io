@@ -22,7 +22,7 @@ Managing PodDisruptionBudgets at scale is painful. Teams forget to create them, 
 
 ## Current Status
 
-PDB Operator is currently in **alpha** (`v0.1.0`). The API version is `v1alpha1`, meaning the API may change before reaching v1. See the [Roadmap](/docs/community/roadmap) for planned features.
+PDB Operator is currently in **alpha** (`v0.1.1`). The API version is `v1alpha1`, meaning the API may change before reaching v1. See the [Roadmap](/docs/community/roadmap) for planned features.
 
 ## Installation
 

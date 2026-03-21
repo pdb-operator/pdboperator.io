@@ -218,7 +218,7 @@ function HomepageHeader() {
           <div className={styles.heroText}>
             <div className={styles.heroBadge}>
               <span className={styles.badgeDot} />
-              v0.1.0 — Initial Release
+              v0.1.1 — Latest Release
             </div>
             <Heading as="h1" className={styles.heroTitle}>
               PDB Operator

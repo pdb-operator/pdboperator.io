@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-03-21
+
+### Changed
+
+- Updated operator version references to v0.1.1
+- Updated roadmap with v0.1.1 release items
+
 ## [0.1.0] - 2026-03-01
 
 ### Added
@@ -20,5 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependabot configuration for npm and GitHub Actions
 - CNCF governance files (LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, SECURITY, GOVERNANCE, MAINTAINERS)
 
-[Unreleased]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pdb-operator/pdboperator.io/releases/tag/v0.1.0

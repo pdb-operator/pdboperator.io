@@ -22,6 +22,14 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 - [x] Published container images (GHCR)
 - [x] Install manifests (`dist/install.yaml`)
 
+## v0.1.1 - Dependency Updates and CI Fixes ✅
+
+- [x] Bump controller-runtime to v0.23.3 (bug fixes)
+- [x] Bump OpenTelemetry packages to v1.42.0
+- [x] Fix unsupported semver cooldown keys for github-actions ecosystem
+- [x] Resolve zizmor workflow security findings
+- [x] Restrict CI workflows to main branch pushes
+
 ## v0.2.0 - StatefulSet and DaemonSet Support
 
 - [ ] Extend PDB management to StatefulSets
