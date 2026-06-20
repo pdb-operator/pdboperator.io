@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-20
+
 ### Changed
 
-- Re-scoped v0.2.0 roadmap to StatefulSet Support; marked StatefulSet management done and moved DaemonSet support and per-workload-type PDB strategies to v0.3.0
+- Updated operator version references to v0.2.0
+- Re-scoped v0.2.0 roadmap to StatefulSet Support; marked it complete and moved DaemonSet support and per-workload-type PDB strategies to v0.3.0
+- Homepage release badge now reads the operator's latest GitHub release dynamically
 
 ## [0.1.1] - 2026-03-21
 
@@ -31,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependabot configuration for npm and GitHub Actions
 - CNCF governance files (LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, SECURITY, GOVERNANCE, MAINTAINERS)
 
-[Unreleased]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/pdb-operator/pdboperator.io/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/pdb-operator/pdboperator.io/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/pdb-operator/pdboperator.io/releases/tag/v0.1.0

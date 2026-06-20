@@ -30,7 +30,7 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 - [x] Resolve zizmor workflow security findings
 - [x] Restrict CI workflows to main branch pushes
 
-## v0.2.0 - StatefulSet Support
+## v0.2.0 - StatefulSet Support ✅
 
 - [x] Extend PDB management to StatefulSets
 
