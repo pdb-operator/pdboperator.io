@@ -30,13 +30,14 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 - [x] Resolve zizmor workflow security findings
 - [x] Restrict CI workflows to main branch pushes
 
-## v0.2.0 - StatefulSet and DaemonSet Support
+## v0.2.0 - StatefulSet Support
 
-- [ ] Extend PDB management to StatefulSets
+- [x] Extend PDB management to StatefulSets
+
+## v0.3.0 - Advanced Workloads & Policy
+
+- [ ] DaemonSet support
 - [ ] Per-workload-type PDB calculation strategies
-
-## v0.3.0 - Advanced Policy Features
-
 - [ ] Namespace-scoped default policies
 - [ ] Cluster-wide default policy
 - [ ] Policy inheritance and composition

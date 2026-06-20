@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Re-scoped v0.2.0 roadmap to StatefulSet Support; marked StatefulSet management done and moved DaemonSet support and per-workload-type PDB strategies to v0.3.0
+
 ## [0.1.1] - 2026-03-21
 
 ### Changed
