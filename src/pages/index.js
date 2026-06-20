@@ -208,7 +208,26 @@ function QuickInstall() {
   );
 }
 
+const FALLBACK_VERSION = 'v0.1.1';
+
 function HomepageHeader() {
+  const [version, setVersion] = useState(FALLBACK_VERSION);
+
+  useEffect(() => {
+    let active = true;
+    fetch('https://api.github.com/repos/pdb-operator/pdb-operator/releases/latest')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data && data.tag_name) {
+          setVersion(data.tag_name);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <header className={styles.heroBanner}>
       <div className={styles.heroGlow} />
@@ -218,7 +237,7 @@ function HomepageHeader() {
           <div className={styles.heroText}>
             <div className={styles.heroBadge}>
               <span className={styles.badgeDot} />
-              v0.1.1 — Latest Release
+              {version} · Latest Release
             </div>
             <Heading as="h1" className={styles.heroTitle}>
               PDB Operator
