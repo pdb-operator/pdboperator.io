@@ -115,6 +115,11 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
+            href: 'https://cloud-native.slack.com/channels/pdb-operator',
+            label: 'Slack',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/pdb-operator/pdb-operator',
             label: 'GitHub',
             position: 'right',

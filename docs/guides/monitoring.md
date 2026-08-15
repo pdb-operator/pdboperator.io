@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Monitoring
 ---
 
@@ -39,13 +39,20 @@ helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
 
 ### Enable Prometheus Alerting Rules
 
-The Helm chart includes 12 alert groups covering operator health, performance, circuit breaker, compliance, workqueue depth, resources, and more:
+The Helm chart includes 11 alert groups: operator health, performance, policies, workqueue depth, resources, business logic, retry, webhook, policy conflicts, maintenance, and circuit breaker.
 
 ```bash
 helm upgrade pdb-operator oci://ghcr.io/pdb-operator/charts/pdb-operator \
   --namespace pdb-operator-system \
   --set prometheusRule.enabled=true
 ```
+
+:::caution Circuit breaker alerts never fire
+The `pdb-operator.circuit-breaker` group queries `pdb_operator_circuit_breaker_state` and
+`pdb_operator_circuit_breaker_failures_total`, but the operator does not register either metric.
+The circuit breaker itself works, it just does not export Prometheus metrics yet. Treat that alert
+group as inert until [the metrics are registered upstream](https://github.com/pdb-operator/pdb-operator/issues).
+:::
 
 ## OpenTelemetry Tracing
 
