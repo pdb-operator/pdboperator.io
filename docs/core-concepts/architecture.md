@@ -83,7 +83,7 @@ Watches `LeaderWorkerSet` resources (`leaderworkerset.x-k8s.io/v1`) and quantize
 whole groups rather than individual pods. Support is detected at startup: without the LWS CRD
 installed, this controller is not registered and the operator runs unchanged.
 
-See [LeaderWorkerSet Support](/docs/core-concepts/leaderworkerset) for the calculation and its
+See [LeaderWorkerSet Support](./leaderworkerset.md) for the calculation and its
 edge cases.
 
 ## Reconciliation Flow
@@ -110,5 +110,5 @@ edge cases.
 
 - [Availability Classes](/docs/core-concepts/availability-classes): how `minAvailable` values are determined
 - [Enforcement Modes](/docs/core-concepts/enforcement-modes): how the workload controllers resolve overrides
-- [LeaderWorkerSet Support](/docs/core-concepts/leaderworkerset): group-aware budgets for multi-host inference
+- [LeaderWorkerSet Support](./leaderworkerset.md): group-aware budgets for multi-host inference
 - [Monitoring](/docs/guides/monitoring): metrics and tracing emitted by the controllers
