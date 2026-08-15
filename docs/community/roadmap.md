@@ -7,10 +7,12 @@ title: Roadmap
 
 Planned development for PDB Operator. Priorities may shift based on community feedback and contributions.
 
+The current release is **v0.4.1**. Everything below it is shipped; v0.5.0 onward is planned.
+
 ## v0.1.0 - Initial Release ✅
 
 - [x] PDBPolicy CRD with availability classes and enforcement modes
-- [x] Two-controller architecture (PDBPolicy + Deployment controllers)
+- [x] Controller architecture (PDBPolicy + Deployment controllers)
 - [x] Workload selector (labels, names, functions, namespaces)
 - [x] Maintenance window support
 - [x] Validating and mutating webhooks
@@ -33,10 +35,45 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 ## v0.2.0 - StatefulSet Support ✅
 
 - [x] Extend PDB management to StatefulSets
+- [x] Shared `WorkloadAccessor` abstraction across the Deployment and StatefulSet controllers
+- [x] `ManagedStatefulSets` metric
+- [x] Clean up the PDB when a StatefulSet scales below 2 replicas
 
-## v0.3.0 - Advanced Workloads & Policy
+## v0.2.1 - Scale-Down Cleanup ✅
 
-- [ ] DaemonSet support
+- [x] Clean up the PDB when a Deployment scales below 2 replicas, instead of orphaning it and blocking drains
+- [x] e2e coverage for scale-down cleanup on both Deployments and StatefulSets
+- [x] De-flake the time-dependent maintenance-window tests
+
+## v0.2.2 - OpenShift RBAC ✅
+
+- [x] Grant `deployments/finalizers` and `statefulsets/finalizers` RBAC so `blockOwnerDeletion` works on clusters that enforce ownerReference rules
+
+## v0.3.0 - Maintenance Windows & Correctness ✅
+
+- [x] Evaluate policy-level maintenance windows (`spec.maintenanceWindows`), not only the workload annotation
+- [x] Structured windows: timezone, `daysOfWeek`, multiple windows, and overnight spans
+- [x] Proactive requeue so a window relaxes its PDB on time
+- [x] Enable the webhook server in the default `make deploy` config
+- [x] Fix OpenTelemetry tracing initialization (semconv schema mismatch)
+- [x] Injectable clock for deterministic maintenance-window tests
+
+## v0.4.0 - Multi-Host Inference ✅
+
+- [x] Group-aware PDBs for LeaderWorkerSet (`leaderworkerset.x-k8s.io/v1`)
+- [x] Quantize `minAvailable` to whole groups; skip single-group sets with a Warning event
+- [x] Skip LWS-internal StatefulSets so no pod matches two PDBs
+- [x] `pdb_operator_leaderworkersets_managed` metric
+- [x] Go 1.26.6 security bump (six stdlib CVEs)
+
+## v0.4.1 - Managed-Workload Metrics ✅
+
+- [x] Recount all three workload kinds each tick, so `pdb_operator_statefulsets_managed` and `pdb_operator_leaderworkersets_managed` drop on deletion instead of sticking
+- [x] Exclude LWS-internal StatefulSets from the counts
+- [x] Skip the LeaderWorkerSet list entirely when the CRD is absent
+
+## v0.5.0 - Advanced Workloads & Policy
+
 - [ ] Per-workload-type PDB calculation strategies
 - [ ] Namespace-scoped default policies
 - [ ] Cluster-wide default policy
@@ -44,12 +81,13 @@ Planned development for PDB Operator. Priorities may shift based on community fe
 - [ ] Dry-run mode for policy evaluation without creating PDBs
 - [ ] PDB drift detection and auto-remediation for manually modified PDBs
 
-## v0.4.0 - Observability and Operations
+## v0.6.0 - Observability and Operations
 
 - [ ] Operator health dashboard (built-in status endpoint)
 - [ ] Policy compliance reports
 - [ ] Audit log integration (external audit sink)
 - [ ] PDB change history tracking on resource annotations
+- [ ] Register circuit breaker metrics so the shipped alert group can fire
 
 ## Future Considerations
 

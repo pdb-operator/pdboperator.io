@@ -20,6 +20,7 @@ const sidebars = {
         'core-concepts/enforcement-modes',
         'core-concepts/maintenance-windows',
         'core-concepts/workload-functions',
+        'core-concepts/leaderworkerset',
       ],
     },
     {
@@ -50,6 +51,7 @@ const sidebars = {
       items: [
         'community/contributing',
         'community/governance',
+        'community/roadmap',
         'community/security',
         'community/code-of-conduct',
       ],
