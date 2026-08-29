@@ -6,7 +6,7 @@ import Heading from '@theme/Heading';
 import {useEffect, useRef, useState, useCallback} from 'react';
 import styles from './index.module.css';
 
-const FALLBACK_VERSION = 'v0.4.1';
+const FALLBACK_VERSION = 'v0.5.0';
 const REPO_URL = 'https://github.com/pdb-operator/pdb-operator';
 const SLACK_URL = 'https://cloud-native.slack.com/channels/pdb-operator';
 
@@ -315,11 +315,12 @@ function Hero() {
             <p className={styles.heroLede}>
               PDB Operator turns availability into a declarative policy. Define
               the classes once and the operator writes, updates, and cleans up
-              PodDisruptionBudgets for every Deployment, StatefulSet, and
-              LeaderWorkerSet that matches, with enforcement modes teams can work
-              inside, maintenance windows that relax budgets on schedule, and
-              group-aware budgets for multi-host inference. No hand-written PDBs,
-              no stale ones left behind.
+              PodDisruptionBudgets for every Deployment, StatefulSet,
+              LeaderWorkerSet, and gang-scheduled Workload that matches, with
+              enforcement modes teams can work inside, maintenance windows that
+              relax budgets on schedule, and group-aware budgets for multi-host
+              inference and training. No hand-written PDBs, no stale ones left
+              behind.
             </p>
             <div className={styles.heroButtons}>
               <Link
@@ -351,7 +352,7 @@ const LAYERS = [
     accent: '#7DB4F5',
     groups: [
       {
-        items: ['Deployment', 'StatefulSet', 'LeaderWorkerSet'],
+        items: ['Deployment', 'StatefulSet', 'LeaderWorkerSet', 'Workload (gang)'],
         muted: ['+ any replica count ≥ 2'],
       },
     ],

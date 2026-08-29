@@ -21,6 +21,7 @@ const sidebars = {
         'core-concepts/maintenance-windows',
         'core-concepts/workload-functions',
         'core-concepts/leaderworkerset',
+        'core-concepts/workload-api',
       ],
     },
     {

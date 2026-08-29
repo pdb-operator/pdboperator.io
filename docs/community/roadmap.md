@@ -7,7 +7,7 @@ title: Roadmap
 
 Planned development for PDB Operator. Priorities may shift based on community feedback and contributions.
 
-The current release is **v0.4.1**. Everything below it is shipped; v0.5.0 onward is planned.
+The current release is **v0.5.0**. Everything below it is shipped; v0.6.0 onward is planned.
 
 ## v0.1.0 - Initial Release ✅
 
@@ -72,8 +72,19 @@ The current release is **v0.4.1**. Everything below it is shipped; v0.5.0 onward
 - [x] Exclude LWS-internal StatefulSets from the counts
 - [x] Skip the LeaderWorkerSet list entirely when the CRD is absent
 
-## v0.5.0 - Advanced Workloads & Policy
+## v0.5.0 - Gang Scheduling ✅
 
+- [x] Gang-aware PDBs from the upstream Workload API (`scheduling.k8s.io/v1beta1`, KEP-4671, Kubernetes 1.37 with the `GenericWorkload` gate)
+- [x] `disruptionMode: all` gangs quantized to whole pod groups; `single` gangs floored at `minCount`
+- [x] PDB selector derived from the labels shared by a group's pods and validated for exactness
+- [x] Distinct Warning event reasons per skip cause, plus a log line per skip
+- [x] `pdb_operator_workloads_managed` metric
+- [x] e2e on kind 1.37: LeaderWorkerSet gang disruption and Workload API gang budgets
+
+## v0.6.0 - Advanced Workloads & Policy
+
+- [ ] Multi-template and composite Workloads
+- [ ] Gang-aware `EvictionRequest` responder (KEP-4563)
 - [ ] Per-workload-type PDB calculation strategies
 - [ ] Namespace-scoped default policies
 - [ ] Cluster-wide default policy
@@ -81,7 +92,7 @@ The current release is **v0.4.1**. Everything below it is shipped; v0.5.0 onward
 - [ ] Dry-run mode for policy evaluation without creating PDBs
 - [ ] PDB drift detection and auto-remediation for manually modified PDBs
 
-## v0.6.0 - Observability and Operations
+## v0.7.0 - Observability and Operations
 
 - [ ] Operator health dashboard (built-in status endpoint)
 - [ ] Policy compliance reports
