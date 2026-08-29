@@ -5,7 +5,7 @@ title: Architecture
 
 # Architecture
 
-PDB Operator uses a **four-controller architecture** to manage PodDisruptionBudgets across every
+PDB Operator uses a **five-controller architecture** to manage PodDisruptionBudgets across every
 supported workload kind.
 
 ```mermaid
@@ -15,6 +15,7 @@ graph TD
         C["Deployments"]
         F["StatefulSets"]
         H["LeaderWorkerSets"]
+        J["Workloads (scheduling.k8s.io)"]
     end
 
     subgraph operator ["PDB Operator"]
@@ -22,6 +23,7 @@ graph TD
         D["DeploymentController"]
         G["StatefulSetController"]
         I["LeaderWorkerSetController"]
+        K["WorkloadAPIController"]
         Cache["Policy Cache"]
     end
 
@@ -35,12 +37,15 @@ graph TD
     C --> D
     F --> G
     H --> I
+    J --> K
     Cache --> D
     Cache --> G
     Cache --> I
+    Cache --> K
     D --> E
     G --> E
     I --> E
+    K --> E
 ```
 
 ## Controllers
@@ -86,6 +91,16 @@ installed, this controller is not registered and the operator runs unchanged.
 See [LeaderWorkerSet Support](/docs/core-concepts/leaderworkerset) for the calculation and its
 edge cases.
 
+### WorkloadAPIController
+
+Watches `Workload` resources from the upstream Workload API (`scheduling.k8s.io/v1beta1`) and
+budgets gang-scheduled pod groups: `disruptionMode: all` gangs are quantized to whole groups,
+`single` gangs keep pod semantics floored at the gang `minCount`. Support is detected at startup:
+without the API served, this controller is not registered.
+
+See [Workload API Support](/docs/core-concepts/workload-api) for the calculation, selector
+derivation, and the skip cases.
+
 ## Reconciliation Flow
 
 1. A `PDBPolicy` is created or updated
@@ -101,7 +116,7 @@ edge cases.
 - **Minimum 2 replicas:** PDBs are only created for workloads with 2+ replicas, since a PDB on a single-replica workload would block all evictions
 - **Self-cleaning:** scaling below 2 replicas removes the PDB rather than orphaning it, and scaling back up recreates it
 - **Priority-based resolution:** when multiple policies match a workload, the highest priority policy wins
-- **One PDB per pod:** a pod must never match two managed PDBs, which is why LWS-internal StatefulSets are skipped
+- **One PDB per pod:** a pod must never match two managed PDBs, which is why LWS-internal StatefulSets are skipped and Workload API groups already carrying the LWS label are left to the LWS path
 - **Finalizers:** ensure clean resource deletion when policies are removed
 - **Policy caching:** reduces API calls during reconciliation for large clusters
 - **Circuit breaker:** an internal, self-tuning wrapper around the Kubernetes client that protects the API server during transient failures. It is not configurable and emits no metrics
@@ -111,4 +126,5 @@ edge cases.
 - [Availability Classes](/docs/core-concepts/availability-classes): how `minAvailable` values are determined
 - [Enforcement Modes](/docs/core-concepts/enforcement-modes): how the workload controllers resolve overrides
 - [LeaderWorkerSet Support](/docs/core-concepts/leaderworkerset): group-aware budgets for multi-host inference
+- [Workload API Support](/docs/core-concepts/workload-api): gang-aware budgets from the upstream Workload API
 - [Monitoring](/docs/guides/monitoring): metrics and tracing emitted by the controllers

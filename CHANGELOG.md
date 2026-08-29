@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `docs/core-concepts/workload-api.md` covering gang-aware budgets from the upstream Workload API (operator v0.5.0)
+- `pdb_operator_workloads_managed` in the metrics reference
 - Animated hero flow diagram: workloads reconcile through the operator into managed PDBs, cycling every 3s, pausable on hover or focus
 - Layered coverage panel for workload kinds, policy, and operations
 - `docs/core-concepts/leaderworkerset.md` covering group-aware budgets for multi-host inference
@@ -17,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Current release bumped to v0.5.0 (introduction, hero fallback); roadmap marks v0.5.0 shipped and renumbers planned work to v0.6.0 and v0.7.0
+- `architecture.md` documents all five controllers; the mermaid diagram includes the WorkloadAPIController
+- Landing page lists gang-scheduled Workloads among the managed kinds
 - Rebuilt the landing page around StatefulSet, LeaderWorkerSet, maintenance windows, and enforcement modes
 - Display headings moved to Inter; JetBrains Mono retained for labels, code, and nav
 - `architecture.md` now documents all four controllers; the mermaid diagram includes StatefulSet and LeaderWorkerSet

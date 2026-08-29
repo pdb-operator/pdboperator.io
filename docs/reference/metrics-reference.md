@@ -29,6 +29,7 @@ All Prometheus metrics exposed by PDB Operator.
 | `pdb_operator_deployments_managed` | Gauge | `namespace`, `availability_class` | Currently managed Deployments |
 | `pdb_operator_statefulsets_managed` | Gauge | `namespace`, `availability_class` | Currently managed StatefulSets |
 | `pdb_operator_leaderworkersets_managed` | Gauge | `namespace`, `availability_class` | Currently managed LeaderWorkerSets |
+| `pdb_operator_workloads_managed` | Gauge | `namespace`, `availability_class` | Currently managed Workload API objects (`scheduling.k8s.io`) |
 | `pdb_operator_policies_active` | Gauge | `namespace` | Currently active policies |
 | `pdb_operator_compliance_status` | Gauge | `namespace`, `deployment`, `reason` | Compliance status (1=compliant, 0=non-compliant) |
 
@@ -53,6 +54,7 @@ histogram_quantile(0.95, rate(pdb_operator_reconciliation_duration_seconds_bucke
 sum(pdb_operator_deployments_managed)
   + sum(pdb_operator_statefulsets_managed)
   + sum(pdb_operator_leaderworkersets_managed)
+  + sum(pdb_operator_workloads_managed)
 
 # PDB operations per minute
 sum(rate(pdb_operator_pdbs_created_total[5m]) + rate(pdb_operator_pdbs_updated_total[5m])) * 60
