@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Current release bumped to v0.5.1 (introduction, hero fallback); roadmap adds the shipped v0.5.1 security dependency release
 - Current release bumped to v0.5.0 (introduction, hero fallback); roadmap marks v0.5.0 shipped and renumbers planned work to v0.6.0 and v0.7.0
 - `architecture.md` documents all five controllers; the mermaid diagram includes the WorkloadAPIController
 - Landing page lists gang-scheduled Workloads among the managed kinds
