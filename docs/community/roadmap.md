@@ -7,7 +7,7 @@ title: Roadmap
 
 Planned development for PDB Operator. Priorities may shift based on community feedback and contributions.
 
-The current release is **v0.5.0**. Everything below it is shipped; v0.6.0 onward is planned.
+The current release is **v0.5.1**. Everything below it is shipped; v0.6.0 onward is planned.
 
 ## v0.1.0 - Initial Release ✅
 
@@ -80,6 +80,11 @@ The current release is **v0.5.0**. Everything below it is shipped; v0.6.0 onward
 - [x] Distinct Warning event reasons per skip cause, plus a log line per skip
 - [x] `pdb_operator_workloads_managed` metric
 - [x] e2e on kind 1.37: LeaderWorkerSet gang disruption and Workload API gang budgets
+
+## v0.5.1 - Security Dependency Updates ✅
+
+- [x] OpenTelemetry v1.46.0 for GO-2026-6505 and gRPC v1.83.2 for GO-2026-6348
+- [x] Kubernetes libraries v0.37.1 and controller-runtime v0.25.2
 
 ## v0.6.0 - Advanced Workloads & Policy
 

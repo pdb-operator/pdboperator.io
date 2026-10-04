@@ -6,7 +6,7 @@ import Heading from '@theme/Heading';
 import {useEffect, useRef, useState, useCallback} from 'react';
 import styles from './index.module.css';
 
-const FALLBACK_VERSION = 'v0.5.0';
+const FALLBACK_VERSION = 'v0.5.1';
 const REPO_URL = 'https://github.com/pdb-operator/pdb-operator';
 const SLACK_URL = 'https://cloud-native.slack.com/channels/pdb-operator';
 
